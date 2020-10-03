@@ -27,6 +27,7 @@
     "eject": "react-scripts eject",
     "install-client": "npm install",
     "start-heroku": "cd backend && node server.js",
+    "client": "npm run start-heroku",
     "heroku-postbuild": "npm run install-client && npm run build"
   },
   "eslintConfig": {
