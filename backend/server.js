@@ -7,7 +7,7 @@ const router = require('express').Router();
 require('dotenv').config(); // have our env variables in .mv file?
 
 const app = express(); //express erver
-const port = process.env.Port || 3000;
+const port = process.env.PORT || 3000;
 
 app.use(cors()); //middleware 
 app.use(express.json()); //allow to parse jsons
