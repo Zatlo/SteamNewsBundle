@@ -7,7 +7,7 @@ const router = require('express').Router();
 require('dotenv').config(); // have our env variables in .mv file?
 
 const app = express(); //express erver
-const port = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000;
 
 app.use(cors()); //middleware 
 app.use(express.json()); //allow to parse jsons
@@ -48,8 +48,9 @@ app.use('/steamgames', steamGamesRouter);
 if(process.env.NODE_ENV === 'production'){
     app.use(express.static('build'));
 }
+app.get('*', (req, res) => res.sendFile(path.resolve('build', 'index.html')));
 
 
-app.listen(port, ()=> { //starts server
-    console.log(`Server is running on port: ${port}`);
+app.listen(PORT, ()=> { //starts server
+    console.log(`Server is running on port: ${PORT}`);
 })
