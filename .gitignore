@@ -24,4 +24,4 @@ yarn-error.log*
 
 #safe
 
-.env
+/backend/env

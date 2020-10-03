@@ -12,13 +12,13 @@ const port = process.env.Port || 3000;
 app.use(cors()); //middleware 
 app.use(express.json()); //allow to parse jsons
 
-router.get("/", (req, res) => {
-    res.setHeader("Access-Control-Allow-Origin", "*")
-    res.setHeader("Access-Control-Allow-Credentials", "true");
-    res.setHeader("Access-Control-Max-Age", "1800");
-    res.setHeader("Access-Control-Allow-Headers", "content-type");
-    res.setHeader( "Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, PATCH, OPTIONS" ); 
-     });
+// router.get("/", (req, res) => {
+//     res.setHeader("Access-Control-Allow-Origin", "*")
+//     res.setHeader("Access-Control-Allow-Credentials", "true");
+//     res.setHeader("Access-Control-Max-Age", "1800");
+//     res.setHeader("Access-Control-Allow-Headers", "content-type");
+//     res.setHeader( "Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, PATCH, OPTIONS" ); 
+//      });
 
 const uri = process.env.ATLAS_URI;
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true }
@@ -42,6 +42,12 @@ app.use('/users', usersRouter);
 app.use('/bundles', bundlesRouter);
 app.use('/sessions', userSessionRouter);
 app.use('/steamgames', steamGamesRouter);
+
+
+//heroku
+if(process.env.NODE_ENV === 'production'){
+    app.use(express.static('build'));
+}
 
 
 app.listen(port, ()=> { //starts server
