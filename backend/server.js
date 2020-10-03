@@ -47,14 +47,16 @@ app.use('/steamgames', steamGamesRouter);
 //heroku
 if(process.env.NODE_ENV === 'production'){
     app.use(express.static('../build'));
+    
+    
+    const proxy = require('http-proxy-middleware')
+
+    module.exports = function(app) {
+        // add other server routes to path array
+        app.use(proxy(['' ], { target: 'http://localhost:3000' }));
+    } 
 }
 
-const proxy = require('http-proxy-middleware')
-
-module.exports = function(app) {
-    // add other server routes to path array
-    app.use(proxy(['/api' ], { target: 'http://localhost:3000' }));
-} 
 
 
 const path = require('path');
