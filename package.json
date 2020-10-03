@@ -21,13 +21,13 @@
     "styled-components": "^5.2.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "cd backend && node server.js",
+    "start-react-app": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "install-client": "npm install",
-    "start-heroku": "cd backend && node server.js",
-    "client": "npm run start-heroku",
+    "client": "npm run start-react-app",
     "heroku-postbuild": "npm run install-client && npm run build"
   },
   "eslintConfig": {
