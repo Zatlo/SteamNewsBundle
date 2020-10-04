@@ -33,8 +33,6 @@ export default class BundleList extends Component { //class component
             const { token } = obj;
             axios.get('/bundles/populate?token='+ token)
             .then(response=> {
-                console.log(response.data);
-                console.log('/api');
                 this.setState({bundles: response.data}) //gets all data of ob ject
             })
             .catch((error)=>{
@@ -123,7 +121,7 @@ export default class BundleList extends Component { //class component
             //console.log(res);
             if (res.data.success) {
                 console.log('success');
-                window.location = '/bundles';
+                window.location = window.location.href;
             }
         })
         .catch(err => {

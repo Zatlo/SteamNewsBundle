@@ -26,11 +26,6 @@ async function findUser(token, callback) {
 }
 
 //same as user.js route
-router.route('/').get((req, res) => {
-    Bundles.find() //mongoose method gets list of users and returns a promise
-    .then(bundles => res.json(bundles))//returns users from database
-    .catch(err => res.status(400).json('Error: ' + err)); //if error return error
-});
 
 router.route('/populate').get((req, res ) => {
     const { query } = req;
