@@ -47,7 +47,7 @@ export default class GameNews extends Component { //class component
         //filter data
         var gamesinState = this.state.games;
         gamesinState.map(game => {
-            axios.get('http://api.steampowered.com/ISteamNews/GetNewsForApp/v0002/?appid='+game.appid+'&count=4&maxlength=300&format=json')
+            axios.get('https://api.steampowered.com/ISteamNews/GetNewsForApp/v0002/?appid='+game.appid+'&count=4&maxlength=300&format=json')
             .then(response=> {
 
                 var currGames = response.data.appnews.newsitems;
