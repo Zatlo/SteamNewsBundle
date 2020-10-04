@@ -46,8 +46,10 @@ export default class GameNews extends Component { //class component
         //call steam api
         //filter data
         var gamesinState = this.state.games;
+        const proxyurl = "https://cors-anywhere.herokuapp.com/";
+
         gamesinState.map(game => {
-            axios.get('https://api.steampowered.com/ISteamNews/GetNewsForApp/v0002/?appid='+game.appid+'&count=4&maxlength=300&format=json')
+            axios.get(proxyurl +'https://api.steampowered.com/ISteamNews/GetNewsForApp/v0002/?appid='+game.appid+'&count=4&maxlength=300&format=json')
             .then(response=> {
 
                 var currGames = response.data.appnews.newsitems;
