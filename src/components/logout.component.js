@@ -26,7 +26,7 @@ export default class SignIn extends Component{
           if (obj && obj.token) {
             const { token } = obj;
             // Verify token
-            axios.get('http://localhost:3000/users/account/logout?token=' + token)
+            axios.get('/users/account/logout?token=' + token)
               .then(res => {
                 if (res.data.success) {
                   this.setState({

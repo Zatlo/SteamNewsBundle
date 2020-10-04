@@ -31,9 +31,10 @@ export default class BundleList extends Component { //class component
         const obj = getFromStorage('steam-news-bundles');
         if (obj && obj.token) {
             const { token } = obj;
-            axios.get('http://localhost:3000/bundles/populate?token='+ token)
+            axios.get('/bundles/populate?token='+ token)
             .then(response=> {
-                //console.log(response.data);
+                console.log(response.data);
+                console.log('/api');
                 this.setState({bundles: response.data}) //gets all data of ob ject
             })
             .catch((error)=>{
@@ -117,7 +118,7 @@ export default class BundleList extends Component { //class component
             description: this.state.newBundleDescription,
             token: getFromStorage('steam-news-bundles')
         }
-        axios.post('http://localhost:3000/bundles/add', bundle)//sends data to backend
+        axios.post('/bundles/add', bundle)//sends data to backend
         .then(res => {
             //console.log(res);
             if (res.data.success) {

@@ -29,7 +29,7 @@ export default class SignUp extends Component{ ////need to always call super whe
         if (obj && obj.token) {
           const { token } = obj;
           // Verify token or send them to sign in
-          axios.get('http://localhost:3000/users/account/verify?token=' + token)
+          axios.get('/users/account/verify?token=' + token)
             .then(res => {
               if (res.data.success) {
                   console.log('verified')
@@ -92,7 +92,7 @@ export default class SignUp extends Component{ ////need to always call super whe
     
         console.log(user);
     
-        axios.post('http://localhost:3000/users/account/signup', user)//sends data to backend
+        axios.post('/users/account/signup', user)//sends data to backend
         .then(res => {
             window.location = '/users/signin';
         })

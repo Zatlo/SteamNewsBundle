@@ -28,7 +28,7 @@ export default class Games extends Component { //class component
     fetchBundleGamesData = () => {
 
         let objectID = this.props.location.state.bundle._id;
-        axios.get('http://localhost:3000/bundles/steamgame/populate', {
+        axios.get('/bundles/steamgame/populate', {
             params: {
                 bundleObjID: objectID
             }
@@ -46,7 +46,7 @@ export default class Games extends Component { //class component
         var input = e.target.value;
         if (e.target.value.length >= 3) {
             input = input.toLowerCase();
-            axios.get('http://localhost:3000/steamgames/games', {
+            axios.get('/steamgames/games', {
             params: {
                 userSearch: input
             }
@@ -84,7 +84,7 @@ export default class Games extends Component { //class component
             gameObjID: game._id,
             bundleObjID: this.state.bundle._id
         }
-        axios.post('http://localhost:3000/bundles/steamgame/add', addGame)
+        axios.post('/bundles/steamgame/add', addGame)
         .then(res => {
             //console.log(res);
             if (res) {

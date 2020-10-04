@@ -29,7 +29,7 @@ export default class Navbar extends Component{
         if (obj && obj.token) {
           const { token } = obj;
           // Verify token or send them to sign in
-          axios.get('http://localhost:3000/users/account/verify?token=' + token)
+          axios.get('/users/account/verify?token=' + token)
             .then(res => {
               if (res.data.success) {
                   console.log('verified')

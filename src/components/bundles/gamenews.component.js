@@ -26,7 +26,7 @@ export default class GameNews extends Component { //class component
     fetchBundleGamesData = () => {
 
         let objectID = this.props.location.state.bundle._id;
-        axios.get('http://localhost:3000/bundles/steamgame/populate', {
+        axios.get('/bundles/steamgame/populate', {
             params: {
                 bundleObjID: objectID
             }
