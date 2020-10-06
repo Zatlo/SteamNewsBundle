@@ -129,36 +129,36 @@ export default class SignIn extends Component{ ////need to always call super whe
     render() {
         const {signInError} = this.state;
         return (
-        <div>
-          <h3>Sign In</h3>
-          <div className ="error" style={{color: "red"}}>{signInError}</div>
-          <form onSubmit={this.onSubmit}>
-            <div className="form-group"> 
-              <label>Email: </label>
-              <input  type="text"
-                  required
-                  className="form-control"
-                  value={this.state.signInEmail}
-                  onChange={this.onTextboxChangeSignInEmail}
-                    />
-            </div>
-            <div className="form-group">
-              <label>Password: </label>
-              <input 
-                  type="text" 
-                  required
-                  className="form-control"
-                  value={this.state.signInPassword}
-                  onChange={this.onTextboxChangeSignInPassword}
-                  />
-            </div>
-    
-            <div className="form-group">
-              <input type="submit" value="Sign In" className="btn btn-primary" />
-            </div>
+            <div>
+                <h3>Sign In</h3>
+                <div className ="error" style={{color: "red"}}>{signInError}</div>
+                <form onSubmit={this.onSubmit}>
+                    <div className="form-group"> 
+                        <label>Email: </label>
+                        <input  type="text"
+                            required
+                            className="form-control"
+                            value={this.state.signInEmail}
+                            onChange={this.onTextboxChangeSignInEmail}
+                                />
+                    </div>
+                    <div className="form-group">
+                        <label>Password: </label>
+                        <input 
+                            type="text" 
+                            required
+                            className="form-control"
+                            value={this.state.signInPassword}
+                            onChange={this.onTextboxChangeSignInPassword}
+                            />
+                    </div>
             
-          </form>
-        </div>
+                    <div className="form-group">
+                        <input type="submit" value="Sign In" className="btn btn-primary" />
+                    </div>
+                    
+                </form>
+            </div>
         )
       }
 }

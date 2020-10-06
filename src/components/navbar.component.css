@@ -1,6 +1,7 @@
 nav{
-    float: right;
-    opacity: 0.7;
-    border: 0px solid rgba(0, 0, 0, 0);
-    border-radius: 0px 0px 15px 15px;
-    }
+    background-color: rgba(255, 255, 255, 0);
+    float: center;
+    opacity: 1;
+    border: 1px solid rgb(209, 109, 201);
+    border-radius: 20px 20px 20px 20px;
+}
