@@ -6,10 +6,6 @@ let UserSession = require('../models/usersession.model'); //requires the model
 const SteamGames = require('../models/steamgames.model');
 const { hashSync } = require('bcrypt');
 
-
-
-
-
 async function findUser(token, callback) {
     await UserSession.find({
         _id: token,
@@ -60,6 +56,34 @@ router.route('/populate').get((req, res ) => {
     
 });
 
+router.route('/delete').post((req, res) => {
+    const { body } = req;
+    const {token} = body.token;
+    //const { bundleID } = req.body[0]._id;
+    const bundleID = body.bundleObjID;
+    //console.log(token);
+
+    findUser(token, function(error, userFound) {//find user session therefore user
+        user = userFound[0].userId;
+
+        User.findById(user)
+        .then(userAcc =>{ //get users bundle and delete from thier bundle
+            //console.log(user);
+            userAcc.bundles.pull(bundleID);
+            userAcc.save()
+            .then(response => {
+                Bundles.findByIdAndDelete({//delete bundle from the bundles db
+                    '_id': bundleID,   
+                }, function(err, response2){
+                    if(!err){
+                        return res.send({success: true, message: "Bundle deleted!"});
+                    }
+                });
+            });
+        })
+    });
+
+});
 
 router.route('/add').post((req, res) => {
     const { query } = req;

@@ -3,16 +3,21 @@ import React, {Component } from 'react';
 import axios from 'axios';
 import { Link } from "react-router-dom";
 
+
+//button stuff
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
+
+//storage
 import {
     getFromStorage
 } from '../utils/storage';
 
 
-
 export default class BundleList extends Component { //class component
     constructor(props){
         super();
-
 
         this.onTextboxNewBundleName = this.onTextboxNewBundleName.bind(this);
         this.onTextboxNewBundleDescription  = this.onTextboxNewBundleDescription.bind(this);
@@ -27,6 +32,7 @@ export default class BundleList extends Component { //class component
         }; // em,pty list of exercises
     }
 
+    
     componentDidMount(){ //get list of exercises from databnase
         const obj = getFromStorage('steam-news-bundles');
         if (obj && obj.token) {
@@ -40,6 +46,7 @@ export default class BundleList extends Component { //class component
             })
         }
     }
+
 
 
     displayBundlesNames=(bundles) => {
@@ -65,6 +72,36 @@ export default class BundleList extends Component { //class component
             </div>
         ));
     };
+
+    displayBundleEditDelete=(bundles)=>{
+        if(!bundles.length) return null;
+                return bundles.map((bundle, index) => (
+            <div key= {index}>
+                <IconButton aria-label="delete">
+                    <EditIcon style={{fontSize: "1rem"}}/>
+                </IconButton>
+                <IconButton onClick={() => this.bundleDeleteIconOnClick(bundle)} aria-label="delete">
+                    <DeleteIcon style={{fontSize: "1rem"}}/>
+                </IconButton>
+            </div>
+        ));
+    };
+
+    bundleDeleteIconOnClick(bundle){
+        const deleteBundle={
+            token: getFromStorage('steam-news-bundles'),
+            bundleObjID: bundle._id
+        }
+
+        axios.post('/bundles/delete', deleteBundle)//sends data to backend
+        .then(res => {
+            //console.log(res);
+            if (res.data.success) {
+                console.log('success');
+                window.location = window.location.href;
+            }
+        })
+    }
 
 
     onTextboxNewBundleName(e) {
@@ -108,6 +145,7 @@ export default class BundleList extends Component { //class component
         );
     }
 
+
     onSubmitNewBundle(e){
         e.preventDefault();//prevents default html form submit behavior from taking place
 
@@ -142,7 +180,7 @@ export default class BundleList extends Component { //class component
         return (
             <div>
                 <div className='bundlesHeader'>
-                    <h3>Logged Bundles for user Zatlo</h3>
+                    <h3>Bundles</h3>
                     <button onClick={() => this.setState({showCreateBundleForm: true})}>Create New Bundle</button>
                 </div>
                 <div>
@@ -153,10 +191,12 @@ export default class BundleList extends Component { //class component
                         <tr>
                             <th>Name</th>
                             <th>Description</th>
+                            <th></th>
                         </tr>
                         <tr>
                             <td>{this.displayBundlesNames(this.state.bundles)}</td>
                             <td>{this.displayBundlesDesc(this.state.bundles)}</td>
+                            <td>{this.displayBundleEditDelete(this.state.bundles)}</td>
                         </tr>
                     </thead>
                     <tbody>
