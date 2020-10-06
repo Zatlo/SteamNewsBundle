@@ -8,7 +8,7 @@ export default class HomePage extends Component {
     render() {
         return (
             <div class="homePage">
-                <h1>Steam Gaming Bundles News</h1>
+                <h1>Steam Gaming Bundle News</h1>
                 <div class="jumbotron">
                     <div class="container">
                     <h1>Most Popular Bundles!</h1>
