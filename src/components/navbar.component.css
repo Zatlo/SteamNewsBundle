@@ -1,10 +1,6 @@
 nav{
+    float: right;
+    opacity: 0.7;
     border: 0px solid rgba(0, 0, 0, 0);
-    border-radius: 0px 0px 20px 20px;
-    color: rgb(95, 74, 136);
-    text-align: center;
-}
-
-nav{
-    text-align: center;
-}
+    border-radius: 0px 0px 15px 15px;
+    }
