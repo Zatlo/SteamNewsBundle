@@ -15,6 +15,20 @@ export default class HomePage extends Component {
                     <div class="jumbotron">
                         <h2>Most Popular Bundles</h2>
                     </div>
+
+                    <div id="my-slider" class="carousel slide" data-ride="carousel">
+
+                        <div class="carousel-inner" role="listbox">
+                            <div class="item active">
+                                <img src="background.jpg" alt="first"/>
+                                <div class="carousel-caption">
+                                    <h1>Purple 1</h1>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
                 </div>
             </div>
         )
