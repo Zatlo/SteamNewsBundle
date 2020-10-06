@@ -1,6 +1,7 @@
 import React, {Component } from 'react';
 //import {Link} from 'react-router-dom';
 import axios from 'axios';
+import "./signin.component.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import {
@@ -143,7 +144,7 @@ export default class SignIn extends Component{ ////need to always call super whe
                                     <p></p>
                                     <input type="email" 
                                         className="form-control"
-                                        class="btn btn-outline-danger" 
+                                        class="btn" 
                                         id="sup" 
                                         aria-describedby="emailHelp" 
                                         placeholder="E-mail" 
@@ -158,7 +159,7 @@ export default class SignIn extends Component{ ////need to always call super whe
                                     <p></p>
                                     <input type="password"
                                         className="form-control"
-                                        class="btn btn-outline-warning" 
+                                        class="btn" 
                                         id="sup" 
                                         placeholder="Password" 
                                         required
@@ -176,7 +177,7 @@ export default class SignIn extends Component{ ////need to always call super whe
                                 </div>
 
                                 <div className="form-group">   
-                                    <button type="submit" href="#" id="susub" class="signupbutton btn btn-warning my-2 my-sm-0">Sign In</button>
+                                    <button type="submit" href="#" id="susub" class="signupbutton btn my-2 my-sm-0">Sign In</button>
                                 </div>
                             </form>
                         </div>
