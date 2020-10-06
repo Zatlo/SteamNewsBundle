@@ -1,22 +1,26 @@
 body{
-    background-color: rgb(52, 33, 88);
+    background-image: url("background.jpg");
+    background-color: rgba(52, 33, 88, 1);
+    background-blend-mode: multiply;
 }
 
 .homePage{
-    color: white;
+    color: rgb(209, 109, 201);
     text-align: center;
 }
 
 .jumbotron{
-    opacity: 1;
-    background-color:rgb(95, 74, 136);
-    color:rgb(52, 33, 88);
+    padding-top: 5px;
+    padding-bottom: 5px;
+    color:rgb(151, 69, 151);
+    background-color:rgba(255, 255, 255, 0);
     /*font-family: monospace;*/
     text-align: center;
-    border: 4px solid #000000;
-    border-radius: 30px 30px 30px 30px;
+    border-top: 4px solid rgb(151, 69, 151);
+    border-bottom: 4px solid rgb(151, 69, 151);
+    border-radius: 0px 0px 0px 0px;
 }
 
 .jumbotron:hover{
-    opacity: 0.5;
+
 }
