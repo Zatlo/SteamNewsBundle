@@ -11,7 +11,7 @@ export default class HomePage extends Component {
                 <h1>Steam Gaming Bundle News</h1>
                 <div class="jumbotron">
                     <div class="container">
-                    <h1>Most Popular Bundles!</h1>
+                        <h2>Most Popular Bundles</h2>
                     </div>
                 </div>
             </div>
