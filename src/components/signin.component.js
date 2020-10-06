@@ -1,6 +1,7 @@
 import React, {Component } from 'react';
 //import {Link} from 'react-router-dom';
 import axios from 'axios';
+import "bootstrap/dist/css/bootstrap.min.css";
 
 import {
     setInStorage,
@@ -130,34 +131,57 @@ export default class SignIn extends Component{ ////need to always call super whe
         const {signInError} = this.state;
         return (
             <div>
-                <h3>Sign In</h3>
-                <div className ="error" style={{color: "red"}}>{signInError}</div>
-                <form onSubmit={this.onSubmit}>
-                    <div className="form-group"> 
-                        <label>Email: </label>
-                        <input  type="text"
-                            required
-                            className="form-control"
-                            value={this.state.signInEmail}
-                            onChange={this.onTextboxChangeSignInEmail}
-                                />
+                <div class="container">
+                    <div id="jumbo1su" class="jumbotron boxy">
+                        <h1>Sign In</h1>
+                        <div className ="error" style={{color: "red"}}>{signInError}</div>
+                        <p>Enter your email and password.</p>
+
+                        <div class="container">
+                            <form action="get" class="" onSubmit={this.onSubmit}>
+                                <div class="form-group">
+                                    <p></p>
+                                    <input type="email" 
+                                        className="form-control"
+                                        class="btn btn-outline-danger" 
+                                        id="sup" 
+                                        aria-describedby="emailHelp" 
+                                        placeholder="E-mail" 
+                                        required
+                                        value={this.state.signInEmail}
+                                        onChange={this.onTextboxChangeSignInEmail}
+                                            />
+                                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else. <p>&#128516;</p></small>
+                                </div>
+
+                                <div class="form-group">
+                                    <p></p>
+                                    <input type="password"
+                                        className="form-control"
+                                        class="btn btn-outline-warning" 
+                                        id="sup" 
+                                        placeholder="Password" 
+                                        required
+                                        value={this.state.signInPassword}
+                                        onChange={this.onTextboxChangeSignInPassword}
+                                            />
+                                </div>
+                                    
+                                <div class="form-group form-check">
+                                    <input type="checkbox" 
+                                        class="form-check-input" 
+                                        id="reme"
+                                            />
+                                    <label class="form-check-label" for="exampleCheck1">Keep Me Logged In</label>
+                                </div>
+
+                                <div className="form-group">   
+                                    <button type="submit" href="#" id="susub" class="signupbutton btn btn-warning my-2 my-sm-0">Sign In</button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                    <div className="form-group">
-                        <label>Password: </label>
-                        <input 
-                            type="text" 
-                            required
-                            className="form-control"
-                            value={this.state.signInPassword}
-                            onChange={this.onTextboxChangeSignInPassword}
-                            />
-                    </div>
-            
-                    <div className="form-group">
-                        <input type="submit" value="Sign In" className="btn btn-primary" />
-                    </div>
-                    
-                </form>
+                </div>
             </div>
         )
       }
