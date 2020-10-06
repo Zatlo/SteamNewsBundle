@@ -1,6 +1,8 @@
 import React, {Component } from 'react';
 import {Link } from "react-router-dom";
 import axios from 'axios';
+import "./navbar.component.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 
 import {
@@ -82,7 +84,7 @@ export default class Navbar extends Component{
             <nav className="navbar navbar-dark bg-dark navbar-expand-lg">
                 <Link to="/" className="navbar-brand">Steam News Bundles</Link>
                 <div className="collapse navbar-collapse">
-                    <ul className="navbar-nav mr-auto">
+                    <ul className="navbar-nav mr-auto navbar-right">
                         <li className="navbar-item">
                             <Link to="/" className="nav-link">Home</Link>
                         </li>
