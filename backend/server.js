@@ -65,7 +65,7 @@ app.listen(PORT, ()=> { //starts server
 var scheduler = require('./scheduler');
 var cron = require("node-cron");
 
-cron.schedule("* * 1 * * *", function(){
+cron.schedule("0 0 */1 * * *", function(){
     console.log("Updating popular bundle list!~");
     scheduler.recalculateMostPopularBundles();
 });
