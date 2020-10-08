@@ -125,47 +125,58 @@ export default class SignUp extends Component{ ////need to always call super whe
         const {signUpError} = this.state;
         return (
         <div>
-          <h3>Create New User</h3>
-          <div className ="error" style={{color: "red"}}>{signUpError}</div>
-          <form onSubmit={this.onSubmit}>
-            <div className="form-group"> 
-              <label>Username: </label>
-              <input  type="text"
-                  required
-                  className="form-control"
-                  value={this.state.signUpUsername}
-                  onChange={this.onTextboxChangeSignUpUsername}
-                    />
+            <div class="container">
+                <div id="jumbo1su" class="jumbotron boxy">
+                    <h1>Create New User</h1>
+                    <div className ="error" style={{color: "red"}}>{signUpError}</div>
+                    <p>Fill out the form beloww.</p>
+
+                    <form onSubmit={this.onSubmit}>
+                        <div className="form-group"> 
+                        <label></label>
+                        <input  type="text"
+                            required
+                            className="form-control"
+                            class="btn"
+                            placeholder="Username"
+                            value={this.state.signUpUsername}
+                            onChange={this.onTextboxChangeSignUpUsername}
+                                />
+                        </div>
+                        <div className="form-group"> 
+                        <label></label>
+                        <input  type="text"
+                            required
+                            className="form-control"
+                            class="btn"
+                            placeholder="E-mail"
+                            value={this.state.signUpEmail}
+                            onChange={this.onTextboxChangeSignUpEmail}
+                            />
+                        </div>
+                        <div className="form-group">
+                        <label></label>
+                        <input 
+                            type="password" 
+                            required
+                            className="form-control"
+                            class="btn"
+                            placeholder="Password"
+                            value={this.state.signUpPassword}
+                            onChange={this.onTextboxChangeSignUpPassword}
+                            />
+                        </div>
+                        <div>
+                            <div className="form-group">
+                            <input type="submit" value="Create New User" className="btn btn-primary" />
+                            </div>
+                            <div className="form-group">
+                                <Link to="/users/signin" className="btn btn-primary">Sign In</Link>
+                            </div>
+                        </div>
+                    </form>
+                </div>  
             </div>
-            <div className="form-group"> 
-              <label>Email: </label>
-              <input  type="text"
-                  required
-                  className="form-control"
-                  value={this.state.signUpEmail}
-                  onChange={this.onTextboxChangeSignUpEmail}
-                  />
-            </div>
-            <div className="form-group">
-              <label>Password: </label>
-              <input 
-                  type="text" 
-                  required
-                  className="form-control"
-                  value={this.state.signUpPassword}
-                  onChange={this.onTextboxChangeSignUpPassword}
-                  />
-            </div>
-            <div>
-                <div className="form-group">
-                <input type="submit" value="Create New User" className="btn btn-primary" />
-                </div>
-                <div className="form-group">
-                    <Link to="/users/signin" className="btn btn-primary">Sign In</Link>
-                </div>
-            </div>
-            
-          </form>
         </div>
         )
       }

@@ -153,7 +153,8 @@ export default class SignIn extends Component{ ////need to always call super whe
                                         value={this.state.signInEmail}
                                         onChange={this.onTextboxChangeSignInEmail}
                                             />
-                                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else. <p>&#128516;</p></small>
+                                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                                    <span role="img">&#128516;</span>
                                 </div>
 
                                 <div class="form-group">
