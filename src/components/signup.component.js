@@ -1,6 +1,7 @@
 import React, {Component } from 'react';
 //import {Link} from 'react-router-dom';
 import axios from 'axios';
+import { Link } from "react-router-dom";
 
 import {
     getFromStorage
@@ -155,9 +156,13 @@ export default class SignUp extends Component{ ////need to always call super whe
                   onChange={this.onTextboxChangeSignUpPassword}
                   />
             </div>
-    
-            <div className="form-group">
-              <input type="submit" value="Create New User" className="btn btn-primary" />
+            <div>
+                <div className="form-group">
+                <input type="submit" value="Create New User" className="btn btn-primary" />
+                </div>
+                <div className="form-group">
+                    <Link to="/users/signin" className="btn btn-primary">Sign In</Link>
+                </div>
             </div>
             
           </form>
