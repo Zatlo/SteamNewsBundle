@@ -4,7 +4,7 @@ const Bundles = require('../models/bundles.model');
 let UserSession = require('../models/usersession.model'); //requires the model
 //const { useCallback } = require('react');
 const SteamGames = require('../models/steamgames.model');
-const { hashSync } = require('bcrypt');
+const PopularBundles = require('../models/mostpopularbundles.model');
 
 async function findUser(token, callback) {
     await UserSession.find({
@@ -83,6 +83,42 @@ router.route('/delete').post((req, res) => {
         })
     });
 
+});
+
+router.route('/increaselikes').post((req, res) => {
+    const { query } = req;
+
+    const bundleID = '5f649f1592c4d45da4bccf6f';
+    const randInt = 42;
+
+    Bundles.findById(bundleID)
+    .then(bundle =>{
+        bundle.likes = randInt;
+        bundle.save()
+        return res.send(bundle);
+    })
+
+    //get bundle id
+    //increase likes
+    //update mostpopular db
+    //simple
+
+    
+});
+
+router.route('/mostpopularbundles').post((req, res) => {
+
+    PopularBundles.findOne({        
+    }, function(err, response){
+        Bundles.find({
+            '_id': response.bundles   
+        },{name:1, description: 1, likes: 1, games:1, _id:0}, function(err, bundleInfo){
+            
+            return res.send(bundleInfo);
+        });
+    })
+
+    
 });
 
 router.route('/add').post((req, res) => {

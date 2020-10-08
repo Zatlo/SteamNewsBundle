@@ -61,3 +61,11 @@ res.sendFile(path.resolve('../build', 'index.html'));
 app.listen(PORT, ()=> { //starts server
     console.log(`Server is running on port: ${PORT}`);
 })
+
+var scheduler = require('./scheduler');
+var cron = require("node-cron");
+
+cron.schedule("* * 1 * * *", function(){
+    console.log("Updating popular bundle list!~");
+    scheduler.recalculateMostPopularBundles();
+});

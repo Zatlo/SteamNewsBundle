@@ -153,8 +153,7 @@ export default class SignIn extends Component{ ////need to always call super whe
                                         value={this.state.signInEmail}
                                         onChange={this.onTextboxChangeSignInEmail}
                                             />
-                                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-                                    <span role="img">&#128516;</span>
+                                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else. <p>&#128516;</p></small>
                                 </div>
 
                                 <div class="form-group">
@@ -185,6 +184,9 @@ export default class SignIn extends Component{ ////need to always call super whe
                             </form>
                             <div className="form-group">
                                 <Link to="/users/signup" class="registerbutton btn my-2 my-sm-0">Register</Link>
+                            </div>
+                            <div className="form-group">
+                                <Link to="/users/createguestaccount" class="registerbutton btn my-2 my-sm-0">Create Temporary Guest Account</Link>
                             </div>
                         </div>
                     </div>

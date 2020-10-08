@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
-const {newsSchema} = require('./news.model.js').schema; //import news schema
 
 //validations
 const bundlesSchema = new Schema({
@@ -9,6 +8,7 @@ const bundlesSchema = new Schema({
     games: [ { type: Schema.Types.ObjectId, default: [] } ],
     description: { type: String, required: true },
     date: { type: Date, default: Date.now() },
+    likes: { type: Number, default: 0}
 }, {
     timestamps: true,
 })

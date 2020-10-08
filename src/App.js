@@ -13,6 +13,7 @@ import SignIn from "./components/signin.component";
 import LogOut from "./components/logout.component";
 import Games from "./components/bundles/games.component";
 import GameNews from "./components/bundles/gamenews.component";
+import CreateGuestAccount from "./components/createguestaccount.component";
 
 
 
@@ -34,6 +35,7 @@ function App() {
         <Route path = "/users/signup" exact component={SignUp}/>
         <Route path = "/users/signin" exact component={SignIn}/>
         <Route path = "/users/logout" exact component={LogOut}/>
+        <Route path = "/users/createguestaccount" exact component={CreateGuestAccount}/>
       </div>
     </Router>
     
