@@ -2,6 +2,8 @@ body{
     padding-top: 50px;
     color: rgb(209, 109, 201);
     background-image: url("background.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
     background-color: rgba(52, 33, 88, 1);
     background-blend-mode: multiply;
 }
