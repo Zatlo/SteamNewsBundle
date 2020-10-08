@@ -3,7 +3,6 @@ import React, {Component } from 'react';
 import axios from 'axios';
 import "./signin.component.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import {Link } from "react-router-dom";
 
 import {
     setInStorage,
@@ -178,17 +177,13 @@ export default class SignIn extends Component{ ////need to always call super whe
                                 </div>
 
                                 <div className="form-group">   
-                                    <button type="submit" href="#" id="susub" className="signupbutton btn my-2 my-sm-0">Sign In</button>
+                                    <button type="submit" href="#" id="susub" class="signupbutton btn my-2 my-sm-0">Sign In</button>
                                 </div>
-                                
                             </form>
-                            <div className="form-group">
-                                <Link to="/users/signup" class="registerbutton btn my-2 my-sm-0">Register</Link>
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         )
-    }
+      }
 }
