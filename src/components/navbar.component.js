@@ -4,7 +4,6 @@ import axios from 'axios';
 import "./navbar.component.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-
 import {
     getFromStorage
 } from '../utils/storage';
@@ -21,7 +20,8 @@ export default class Navbar extends Component{
     
         this.state = {//state is how to use variables?
             signInOrLogOut: '',
-            signInOrLogOutLink: ''
+            signInOrLogOutLink: '',
+            username: ''
         }
         
     }
@@ -34,10 +34,10 @@ export default class Navbar extends Component{
           axios.get('/users/account/verify?token=' + token)
             .then(res => {
               if (res.data.success) {
-                  console.log('verified')
                 this.setState({
                     signInOrLogOut: 'Log Out',
-                    signInOrLogOutLink: '/users/logout'
+                    signInOrLogOutLink: '/users/logout',
+                    username: res.data.username
                 });
               } else {
                 console.log('not success in verified')
@@ -76,6 +76,23 @@ export default class Navbar extends Component{
       }
 
 
+      getUserName(){
+        return(
+            <h3 style={{padding: '0', fontWeight:'400', textAlign: 'right', cursor: "default", color: '#fff'}}className="nav-link">{this.state.username}</h3>
+        );
+      }
+
+      ChangeNavbar=()=>{
+          if(this.state.signInOrLogOut === 'Log Out'){
+              this.setState({
+                signInOrLogOut: 'Sign in',
+                signInOrLogOutLink: '/users/signin',
+                username: ''
+            })
+          }
+      }
+
+
 
 
 
@@ -92,13 +109,16 @@ export default class Navbar extends Component{
                             <Link to="/bundles" className="nav-link">Bundles</Link>
                         </li>
                         <li className="navbar-item">
-                            <Link to="/user" className="nav-link">Create User</Link>
+                            <Link to="/" className="nav-link">Other Page</Link>
                         </li>
                         <li className="navbar-item">
-                        <Link to={this.state.signInOrLogOutLink} className="nav-link">{this.state.signInOrLogOut}</Link>
+                        <Link onClick={() => this.ChangeNavbar()} to={this.state.signInOrLogOutLink} className="nav-link">{this.state.signInOrLogOut}</Link>
+                        </li>
+                        <li>
                         </li>
                         
                     </ul>
+                    {this.getUserName()}
                 </div>
             </nav>
         );

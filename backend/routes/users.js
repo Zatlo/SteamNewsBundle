@@ -5,12 +5,7 @@ const UserSession = require('../models/usersession.model');
 
 
 //our first route first impoint  handles incoming http git requests
-//on the first /user url path
-router.route('/').get((req, res) => {
-    User.find() //mongoose method gets list of users and returns a promise
-    .then(users => res.json(users))//returns users from database
-    .catch(err => res.status(400).json('Error: ' + err)); //if error return error
-});
+
 
 
 //handlkes post requests
@@ -211,9 +206,14 @@ router.route('/account/verify').get((req, res ) => {
             });
         }
         else {
-            return res.send({
-                success: true,
-                message: 'Good'
+            User.find({
+                _id: sessions[0].userId
+            },{username:1, email:1, _id:0},(err, user) => {
+                return res.send({
+                    success: true,
+                    username: user[0].username,
+                    email: user[0].email
+                });
             });
         }
     });
