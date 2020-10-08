@@ -62,6 +62,8 @@ app.listen(PORT, ()=> { //starts server
     console.log(`Server is running on port: ${PORT}`);
 })
 
+
+//code below calls function to update popular bundles every hour
 var scheduler = require('./scheduler');
 var cron = require("node-cron");
 
