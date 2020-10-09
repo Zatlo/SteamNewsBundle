@@ -106,14 +106,12 @@ router.route('/increaselikes').post((req, res) => {
     
 });
 
-router.route('/mostpopularbundles').post((req, res) => {
-
+router.route('/mostpopularbundles').get((req, res) => {
     PopularBundles.findOne({        
     }, function(err, response){
         Bundles.find({
             '_id': response.bundles   
         },{name:1, description: 1, likes: 1, games:1, _id:0}, function(err, bundleInfo){
-            
             return res.send(bundleInfo);
         });
     })

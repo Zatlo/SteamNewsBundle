@@ -3,9 +3,36 @@ import React, {Component } from 'react';
 //import axios from 'axios';
 import "./home.component.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import axios from 'axios';
+
 
 
 export default class HomePage extends Component {
+
+    constructor(props){
+        super();
+
+        this.state = {
+            popularBundles: [],
+        };
+    }
+
+    componentDidMount(){
+        this.getHomePagePopularBundles();
+    }
+
+    getHomePagePopularBundles=()=> {
+        //gets most popular bundles from database
+        axios.get('/bundles/mostpopularbundles')
+        .then(response=> {
+            this.setState({popularBundles: response.data}) //gets all data of ob ject
+            //now we need to call all games within each bundle
+        })
+        .catch((error)=>{
+            console.log(error);
+        })
+    };
+
     render() {
         return (
             <div class="homePage">

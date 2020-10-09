@@ -8,7 +8,9 @@ const bundlesSchema = new Schema({
     games: [ { type: Schema.Types.ObjectId, default: [] } ],
     description: { type: String, required: true },
     date: { type: Date, default: Date.now() },
-    likes: { type: Number, default: 0}
+    likes: { type: Number, default: 0},
+    likesUsers: { type: Schema.Types.ObjectId, ref: 'userSchema', default: []}
+    
 }, {
     timestamps: true,
 })

@@ -5,7 +5,6 @@ module.exports = { //gets the top bundles every hour and adds them to the databa
     recalculateMostPopularBundles: function(){
         Bundles.find({}, '_id').sort({likes: -1}).limit(5).exec(
             function(err, results){
-                console.log(results);
                 const newestMostPopularBundles = new PopularBundles();
                 newestMostPopularBundles.bundles = results;
                 PopularBundles.deleteMany({})
