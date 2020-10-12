@@ -111,7 +111,7 @@ router.route('/mostpopularbundles').get((req, res) => {
     }, function(err, response){
         Bundles.find({
             '_id': response.bundles   
-        },{name:1, description: 1, likes: 1, games:1, _id:0}, function(err, bundleInfo){
+        },{name:1, description: 1, likes: 1, likesUsers: 1, games:1, _id:0}, function(err, bundleInfo){
             return res.send(bundleInfo);
         });
     })

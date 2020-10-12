@@ -11,10 +11,7 @@ module.exports = { //gets the top bundles every hour and adds them to the databa
                 .then(
                     newestMostPopularBundles.save((err, popularList) => {
                         if(err){
-                            //console.log(err);
-                        }
-                        else{
-                            //console.log(popularList);
+                            console.log(err);
                         }
                     })
                 )

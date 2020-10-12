@@ -23,6 +23,7 @@ function App() {
 
       <div className="container">
         <Navbar />
+        <p style={{textAlign: "center"}}>Website Updated Daily!</p>
         <br/>
         <Route path = "/" exact component={HomePage}/>
         <Route path = "/bundles" exact component={CreateBundle}/>
