@@ -108,7 +108,7 @@ export default class GameNews extends Component { //class component
                 </p>
                 <br></br>
                 <p>Click on the bubble to view more information!</p>
-        <span style={{color:"black"}} className="vertical-timeline-element-date">{this.convertDateToReadable(newsItem.date)}</span>
+        <span className="vertical-timeline-element-date textColor">{this.convertDateToReadable(newsItem.date)}</span>
             </VerticalTimelineElement>
         ));
     };
@@ -120,7 +120,7 @@ export default class GameNews extends Component { //class component
                 <div className='bundlesHeader'>
                     <h3>{this.state.bundle.name} News</h3>
                     <h3>    
-                        <Link style={{color: "black", border: "solid"}} 
+                        <Link className="textColor" style={{border: "solid"}} 
                         to={{pathname:"/bundles/"+this.state.bundle.name,
                         state:{bundle: this.state.bundle}}}>VIEW GAMES</Link>
                     </h3>

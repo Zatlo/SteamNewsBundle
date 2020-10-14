@@ -109,7 +109,10 @@ export default class Navbar extends Component{
                             <Link to="/bundles" className="nav-link">Bundles</Link>
                         </li>
                         <li className="navbar-item">
-                            <Link to="/" className="nav-link">Other Page</Link>
+                            <Link to="/" className="nav-link">Followed Bundles</Link>
+                        </li>
+                        <li className="navbar-item">
+                            <Link to="/" className="nav-link">Explore</Link>
                         </li>
                         <li className="navbar-item">
                         <Link onClick={() => this.ChangeNavbar()} to={this.state.signInOrLogOutLink} className="nav-link">{this.state.signInOrLogOut}</Link>

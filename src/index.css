@@ -13,7 +13,11 @@ code {
     monospace;
 }
 
+.textColor {
+  color: rgb(209, 109, 201);
+}
+
 
 .bundlesHeader{display: flex; flex-direction: row; justify-content: space-around; padding-bottom: 10px;}
 
-.vertical-timeline.vertical-timeline--two-columns:before{ background-color:  #343a40;} /*line color on news*/
+.vertical-timeline.vertical-timeline--two-columns:before{ background-color:   rgb(209, 109, 201);} /*line color on news*/

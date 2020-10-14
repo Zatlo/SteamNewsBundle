@@ -113,7 +113,7 @@ export default class Games extends Component { //class component
                 <div className='bundlesHeader'>
                     <h3>{this.state.bundle.name}</h3>
                     <h3>    
-                        <Link style={{color: "black", border: "solid"}} 
+                        <Link className="textColor" style={{border: "solid"}} 
                         to={{pathname:"/bundles/"+this.state.bundle.name+ "/news",
                         state:{bundle: this.state.bundle}}}>VIEW NEWS</Link>
                     </h3>

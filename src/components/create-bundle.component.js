@@ -54,8 +54,8 @@ export default class BundleList extends Component { //class component
         return bundles.map((bundle, index) => 
         (
             <div key= {index}>
-                <p><Link 
-                style={{fontWeight: "bold", color: "black"}} 
+                <p><Link className="textColor"
+                style={{fontWeight: "bold"}} 
                 to={{pathname:"/bundles/"+ bundle.name, 
                 state: { bundle: bundles[index]}}}>
                     {bundle.name}</Link></p> 
@@ -68,7 +68,7 @@ export default class BundleList extends Component { //class component
 
         return bundles.map((bundle, index) => (
             <div key= {index}>
-                <p>{bundle.description}</p>
+                <p className="textColor">{bundle.description}</p>
             </div>
         ));
     };
@@ -78,10 +78,10 @@ export default class BundleList extends Component { //class component
                 return bundles.map((bundle, index) => (
             <div key= {index}>
                 <IconButton aria-label="delete">
-                    <EditIcon style={{fontSize: "1rem"}}/>
+                    <EditIcon className="textColor" style={{fontSize: "1rem"}}/>
                 </IconButton>
                 <IconButton onClick={() => this.bundleDeleteIconOnClick(bundle)} aria-label="delete">
-                    <DeleteIcon style={{fontSize: "1rem"}}/>
+                    <DeleteIcon className="textColor" style={{fontSize: "1rem"}}/>
                 </IconButton>
             </div>
         ));
