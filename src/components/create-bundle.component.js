@@ -45,6 +45,9 @@ export default class BundleList extends Component { //class component
                 console.log(error);
             })
         }
+        else{
+            window.location = "/users/signin";
+        }
     }
 
 

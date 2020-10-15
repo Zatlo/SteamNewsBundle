@@ -172,7 +172,16 @@ router.route('/steamgame/add').post((req, res) => {
         SteamGames.find({
             '_id': gameID
         }, function(err, game){
+            if(err){
+                console.log(err);
+            }
             gameObjID = game[0]._id;
+            if(bundle[0].games.length >= 7){
+                return res.status(400).send({
+                    success: false,
+                    message: 'Exceeded number of games'
+                });
+            }
             bundle[0].games.push(gameObjID);
             bundle[0].save()
             return res.send(bundle);

@@ -87,14 +87,18 @@ export default class Games extends Component { //class component
         axios.post('/bundles/steamgame/add', addGame)
         .then(res => {
             //console.log(res);
-            if (res) {
+            if (res.data.success) {
                 console.log('success in adding');
+                console.log(res);
                 window.location = window.location.href;
+            }
+            else{
+                console.log('Failure in adding');
             }
         })
         .catch(err => {
             if(err.response){
-                console.log(err.response)
+                console.log(err.response.data.message)
             }
             else if(err.request){
                 console.log(err.request)
