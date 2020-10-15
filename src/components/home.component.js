@@ -4,7 +4,7 @@ import React, {Component } from 'react';
 import "./home.component.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from 'axios';
-
+import HomePageCarousel from './homepage-components/carousel';
 
 
 export default class HomePage extends Component {
@@ -27,10 +27,17 @@ export default class HomePage extends Component {
         .then(response=> {
             this.setState({popularBundles: response.data}) //gets all data of ob ject
             //now we need to call all games within each bundle
+            //console.log(this.state.popularBundles);
         })
         .catch((error)=>{
             console.log(error);
         })
+    };
+
+    bundleData=(bundles) => {
+        if(!bundles.length) return null;
+
+        return this.state.popularBundles;
     };
 
 
@@ -56,6 +63,9 @@ export default class HomePage extends Component {
                         </div>
 
 
+                    </div>
+                    <div>
+                        <HomePageCarousel bundleData = {this.state.popularBundles}/>
                     </div>
                 </div>
             </div>
