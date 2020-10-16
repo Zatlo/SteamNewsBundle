@@ -2,21 +2,24 @@ import React, {Component} from 'react';
 import Carousel from "react-elastic-carousel";
 import Car from "./car.PNG";
 import styled from 'styled-components';
+import { Link } from "react-router-dom";
+
 
 
 
 export default class HomePageCarousel extends Component {
     state = {
         items: [
-          {id: 1, title: 'item #1'},
-          {id: 2, title: 'item #2'},
-          {id: 3, title: 'item #3'},
-          {id: 4, title: 'item #4'},
-          {id: 5, title: 'item #5'}
+          {name: 1, description: 'loading...'},
+          {name: 2, description: 'loading...'},
+          {name: 3, description: 'loading...'},
+          {name: 4, description: 'loading...'},
+          {name: 5, description: 'loading...'}
         ]
     }
 
     static getDerivedStateFromProps(props, state){
+        console.log(props.bundleData);
         return state.items= props.bundleData;
 
     }
@@ -28,9 +31,13 @@ export default class HomePageCarousel extends Component {
             <CarouselContainer>
                 <Carousel style={{color: "pink"}}>
                 {items.map(item => 
-                <div className="carouselMain" key={item.name}>
+                <div>
+                <Link to={{pathname:"/public/bundle/"+item._id}} className="carouselMain" key={item.name}>
                     <img alt="car" style={{height: "346.2px", width: "542.4px ", position: "relative", justifyContent: "center", alignItems: "center"}}src={Car}/>
                     <h3 className="carouselImageText">{item.name}</h3>
+                    <h3 className="carouselLikeNum">{item.likes}</h3>                   
+                </Link>
+                <p>{item.description}</p>
                 </div>)}
                 
                 </Carousel>
@@ -75,10 +82,20 @@ button.rec-arrow:hover{
     background-color: rgb(209, 109, 201, 0.356);
 }
 
-
+.carouselLikeNum{
+    top: 300px;
+    position: absolute !important;
+    display: block !important;
+    bottom: 0px;
+    width: 37%;
+    color: pink;
+}
 .carouselImageText {
-    position: relative; 
-    top: -350px; 
-    font-size: 40px;
+    top: 10px;
+    position: absolute !important;
+    display: block !important;
+    bottom: 0px;
+    width: 20%;
+    color: pink;
 }
 `;

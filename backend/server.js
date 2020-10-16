@@ -35,6 +35,7 @@ const usersRouter = require('./routes/users');
 const bundlesRouter = require('./routes/bundles');
 const userSessionRouter = require('./routes/usersession');
 const steamGamesRouter = require('./routes/steamgames');
+const publicRouter = require('./routes/bundles');
 
 
 app.use('/news', newsRouter);
@@ -42,6 +43,7 @@ app.use('/users', usersRouter);
 app.use('/bundles', bundlesRouter);
 app.use('/sessions', userSessionRouter);
 app.use('/steamgames', steamGamesRouter);
+app.use('/public', publicRouter);
 
 
 //heroku

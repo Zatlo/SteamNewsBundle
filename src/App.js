@@ -14,6 +14,7 @@ import LogOut from "./components/logout.component";
 import Games from "./components/bundles/games.component";
 import GameNews from "./components/bundles/gamenews.component";
 import CreateGuestAccount from "./components/createguestaccount.component";
+import PublicBundle from "./components/public/public-bundle.component";
 
 
 
@@ -37,6 +38,8 @@ function App() {
         <Route path = "/users/signin" exact component={SignIn}/>
         <Route path = "/users/logout" exact component={LogOut}/>
         <Route path = "/users/createguestaccount" exact component={CreateGuestAccount}/>
+
+        <Route path = "/public/bundle/:bundleid" exact component={PublicBundle}/>
       </div>
     </Router>
     
