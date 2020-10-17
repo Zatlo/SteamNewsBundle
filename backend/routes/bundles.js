@@ -182,9 +182,12 @@ router.route('/steamgame/add').post((req, res) => {
                     message: 'Exceeded number of games'
                 });
             }
-            bundle[0].games.push(gameObjID);
+            bundle[0].games.addToSet(gameObjID);
             bundle[0].save()
-            return res.send(bundle);
+            return res.send({
+                success: true,
+                message: 'Added game successfully'
+            });
 
 
         });

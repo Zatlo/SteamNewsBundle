@@ -35,7 +35,7 @@ const usersRouter = require('./routes/users');
 const bundlesRouter = require('./routes/bundles');
 const userSessionRouter = require('./routes/usersession');
 const steamGamesRouter = require('./routes/steamgames');
-const publicRouter = require('./routes/bundles');
+const publicRouter = require('./routes/public');
 
 
 app.use('/news', newsRouter);

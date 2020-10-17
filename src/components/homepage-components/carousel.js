@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Carousel from "react-elastic-carousel";
-import Car from "./car.PNG";
+import Car from "./webcar.png";
 import styled from 'styled-components';
 import { Link } from "react-router-dom";
 
@@ -19,7 +19,7 @@ export default class HomePageCarousel extends Component {
     }
 
     static getDerivedStateFromProps(props, state){
-        console.log(props.bundleData);
+        //console.log(props.bundleData);
         return state.items= props.bundleData;
 
     }
@@ -31,8 +31,8 @@ export default class HomePageCarousel extends Component {
             <CarouselContainer>
                 <Carousel style={{color: "pink"}}>
                 {items.map(item => 
-                <div>
-                <Link to={{pathname:"/public/bundle/"+item._id}} className="carouselMain" key={item.name}>
+                <div key={item._id}>
+                <Link to={{pathname:"/public/bundle/"+item._id}} className="carouselMain">
                     <img alt="car" style={{height: "346.2px", width: "542.4px ", position: "relative", justifyContent: "center", alignItems: "center"}}src={Car}/>
                     <h3 className="carouselImageText">{item.name}</h3>
                     <h3 className="carouselLikeNum">{item.likes}</h3>                   

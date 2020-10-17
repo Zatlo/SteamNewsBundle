@@ -8,10 +8,22 @@ const PopularBundles = require('../models/mostpopularbundles.model');
 
 
 router.route('/populatePublicBundle').get((req, res) => {
-    Bundles.findOne({        
-    }, function(err, response){
-        
+    const { query } = req;
+    Bundles.findById(query.bundleObjID)
+    .then(bundle => {
+        if(bundle.private === true){
+            return res.send({
+                success: false,
+                message: 'private'
+            });
+        }
+        else{
+            return res.status(200).send(bundle);
+        }
     })
+    .catch(err => res.status(400).json('Error: ' + err));
 
     
 });
+
+module.exports = router;
