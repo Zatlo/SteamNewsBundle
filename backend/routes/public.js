@@ -26,4 +26,19 @@ router.route('/populatePublicBundle').get((req, res) => {
     
 });
 
+router.route('/populatePublicBundleGames').get((req, res) => {
+    const { query } = req;
+
+    SteamGames.find({
+        '_id': query.gameIDs   
+    },{_id:0}, function(err, games){
+        if(err){
+            return res.status(400);
+        }
+        res.send(games);
+    });
+
+    
+});
+
 module.exports = router;
