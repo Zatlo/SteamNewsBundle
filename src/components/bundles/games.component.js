@@ -3,7 +3,13 @@ import React, {Component } from 'react';
 import axios from 'axios';
 import { Link } from "react-router-dom";
 import styled from 'styled-components';
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
 
+
+import {
+    getFromStorage
+} from '../../utils/storage';
 
 
 export default class Games extends Component { //class component
@@ -109,6 +115,23 @@ export default class Games extends Component { //class component
         });
     }
 
+    gameDeleteIconOnClick(game){
+        const deleteGame={
+            token: getFromStorage('steam-news-bundles'),
+            gameObjID: game._id,
+            bundleObjID: this.state.bundle._id
+        }
+
+        axios.post('/bundles/game/delete', deleteGame)//sends data to backend
+        .then(res => {
+            //console.log(res);
+            if (res.data.success) {
+                console.log('success');
+                window.location = window.location.href;
+            }
+        })
+    }
+
 
     render(){
         return(
@@ -142,7 +165,19 @@ export default class Games extends Component { //class component
                 </div>
 
                     <br></br>
-                    <div>{this.state.games.map(i => (<p key={i._id} style={{fontWeight: "bold"}}>{i.name}</p>))} </div>
+                    <div>{this.state.games.map(i => (<div key={i._id} style={{fontWeight: "bold"}}>
+                        <tr>
+                            <td>
+                                <p>{i.name}</p>
+                            </td>
+                            <td>
+                                <IconButton onClick={() => this.gameDeleteIconOnClick(i)} aria-label="delete">
+                                <DeleteIcon className="textColor" style={{fontSize: "1rem"}}/>
+                                </IconButton>   
+                            </td>                        
+                        </tr>
+                        </div>))} 
+                    </div>
             </div>
             </SearchCSS>
             
