@@ -3,6 +3,8 @@ import React, {Component } from 'react';
 import axios from 'axios';
 //import { Link } from "react-router-dom";
 //import styled from 'styled-components';
+import { VerticalTimeline, VerticalTimelineElement }  from 'react-vertical-timeline-component';
+import 'react-vertical-timeline-component/style.min.css';
 
 
 
@@ -15,6 +17,7 @@ export default class Games extends Component { //class component
             bundle: str.split("/public/bundle/")[1],
             data: [],
             games: [],
+            steamJSON: [],
             private: false
         }
     }
@@ -26,7 +29,6 @@ export default class Games extends Component { //class component
             }
         })
         .then(response=> {
-            console.log(response);
             if(response.data.message === 'private'){
                 this.setState({private: true})
             }
@@ -48,6 +50,7 @@ export default class Games extends Component { //class component
         })
         .then(response=> {
             this.setState({games: response.data}) //gets all data of ob ject
+            this.fetchSteamApiNews();
         })
         .catch((error)=>{
             console.log(error);
@@ -63,7 +66,73 @@ export default class Games extends Component { //class component
               </div>
           )
         }      
-      }
+    }
+
+    fetchSteamApiNews=()=>{
+        //call steam api
+        //filter data
+        var gamesinState = this.state.games;
+        const proxyurl = "https://cors-anywhere.herokuapp.com/";
+
+        gamesinState.map(game => {
+            axios.get(proxyurl +'https://api.steampowered.com/ISteamNews/GetNewsForApp/v0002/?appid='+game.appid+'&count=4&maxlength=300&format=json')
+            .then(response=> {
+
+                var currGames = response.data.appnews.newsitems;
+                currGames.map(currGame =>{
+                    currGame.appid = game.name;
+                    return currGame.appid;
+                })
+                this.setState({steamJSON: [...this.state.steamJSON, ...currGames]}) //gets all data of ob ject
+                //order by date
+
+                const myData = [].concat(this.state.steamJSON)
+                .sort((a, b) => a.date < b.date ? 1 : -1)
+                this.setState({gamenews: myData})
+
+                return;
+
+                
+            })
+            .catch((error)=>{
+                console.log(error);
+            })
+            return gamesinState;
+        })
+
+    }
+
+    displayGameNews=(news) => {
+        if(!news.length) return null;
+
+        return news.map((newsItem, index) => (
+            <VerticalTimelineElement
+                key={index}
+                className="vertical-timeline-element--work"
+                contentStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}
+                contentArrowStyle={{ borderRight: '15px solid  rgb(33, 150, 243)' }}
+                iconStyle={{ cursor:"pointer", background: 'rgb(33, 150, 243)', color: '#fff', boxShadow:"0 0 20px rgb(33,150,243)" }}
+                iconOnClick={() => this.openExternalURL(newsItem.url) }
+            >
+                <h3 className="vertical-timeline-element-title">{newsItem.appid}</h3>
+                <br></br>
+                <h4 style={{color: "lightgray"}}className="vertical-timeline-element-subtitle">{newsItem.title}</h4>
+                <p>
+                {newsItem.contents}
+                </p>
+                <br></br>
+                <p>Click on the bubble to view more information!</p>
+        <span className="vertical-timeline-element-date textColor">{this.convertDateToReadable(newsItem.date)}</span>
+            </VerticalTimelineElement>
+        ));
+    };
+
+    convertDateToReadable(date){
+        var d = new Date(0); // The 0 there is the key, which sets the date to the epoch
+        d.setUTCSeconds(date);
+
+        return d.toString();
+    }
 
 
 
@@ -75,6 +144,12 @@ export default class Games extends Component { //class component
                 <h3 style={{color:"White"}}>{this.state.data.name}</h3>
                 <br></br>
                 <div>{this.state.games.map(i => (<p key={i.appid} style={{fontWeight: "bold"}}>{i.name}</p>))} </div>
+
+
+                <VerticalTimeline animate={true}>
+                    {this.displayGameNews(this.state.steamJSON)}
+
+                </VerticalTimeline>
             </div>
         )
     }
