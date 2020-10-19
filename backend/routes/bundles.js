@@ -85,6 +85,36 @@ router.route('/delete').post((req, res) => {
 
 });
 
+
+router.route('/game/delete').post((req, res) => {
+    const { body } = req;
+    const {token} = body.token;
+    //const { bundleID } = req.body[0]._id;
+    const bundleID = body.bundleObjID;
+    const gameID = body.gameObjID;
+
+    findUser(token, function(error, userFound) {//find user session therefore user
+        user = userFound[0].userId;
+
+        User.findById(user)
+        .then(userAcc =>{ //get users bundle and delete from thier bundle
+            if(userAcc.bundles.includes(bundleID)){
+                Bundles.findById(bundleID)
+                .then(bundle =>{
+                    bundle.games.pull(gameID);
+                    bundle.save()
+                    .then(response =>{
+                        return res.send({
+                            success: true
+                        });
+                    })
+                })
+            }
+        })
+    });
+
+});
+
 router.route('/increaselikes').post((req, res) => {
     const { query } = req;
 
