@@ -29,6 +29,7 @@ export default class Games extends Component { //class component
             }
         })
         .then(response=> {
+            console.log(response);
             if(response.data.message === 'private'){
                 this.setState({private: true})
             }
@@ -148,6 +149,9 @@ export default class Games extends Component { //class component
 
                 <VerticalTimeline animate={true}>
                     {this.displayGameNews(this.state.steamJSON)}
+                    <VerticalTimelineElement
+                    >
+                    </VerticalTimelineElement>
 
                 </VerticalTimeline>
             </div>

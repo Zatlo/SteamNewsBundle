@@ -5,11 +5,22 @@ import { Link } from "react-router-dom";
 import styled from 'styled-components';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
+import FileCopyIcon from '@material-ui/icons/FileCopy';
 
 
 import {
     getFromStorage
 } from '../../utils/storage';
+
+function copyElementToClipboard(element) {
+    element = window.location.hostname + '/public/bundle/'+element;
+    const el = document.createElement('textarea');
+    el.value = element;
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand('copy');
+    document.body.removeChild(el);
+}
 
 
 export default class Games extends Component { //class component
@@ -138,7 +149,11 @@ export default class Games extends Component { //class component
             <SearchCSS>
             <div>
                 <div className='bundlesHeader'>
-                    <h3>{this.state.bundle.name}</h3>
+                    <h3>{this.state.bundle.name}
+                    <IconButton onClick={() => copyElementToClipboard(this.state.bundle._id)} aria-label="delete">
+                        <FileCopyIcon className="textColor" style={{fontSize: "1rem"}}/>
+                    </IconButton>  
+                    </h3>
                     <h3>    
                         <Link className="textColor" style={{border: "solid"}} 
                         to={{pathname:"/bundles/"+this.state.bundle.name+ "/news",
@@ -165,8 +180,7 @@ export default class Games extends Component { //class component
                 </div>
 
                     <br></br>
-                    <div>{this.state.games.map(i => (<div key={i._id} style={{fontWeight: "bold"}}>
-                        <tr>
+                    <div>{this.state.games.map(i => (<tr key={i._id} style={{fontWeight: "bold"}}>
                             <td>
                                 <p>{i.name}</p>
                             </td>
@@ -175,8 +189,7 @@ export default class Games extends Component { //class component
                                 <DeleteIcon className="textColor" style={{fontSize: "1rem"}}/>
                                 </IconButton>   
                             </td>                        
-                        </tr>
-                        </div>))} 
+                        </tr>))} 
                     </div>
             </div>
             </SearchCSS>
