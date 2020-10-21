@@ -13,7 +13,7 @@ import {
 } from '../../utils/storage';
 
 function copyElementToClipboard(element) {
-    element = window.location.hostname + '/public/bundle/'+element;
+    element = 'https://'+window.location.hostname + '/public/bundle/'+element;
     const el = document.createElement('textarea');
     el.value = element;
     document.body.appendChild(el);

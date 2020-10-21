@@ -21,21 +21,28 @@ router.route('/account/signup').post((req, res ) => {
         } = body;
 
         if(!username){
-            return res.send({
+            return res.status(400).send({
                 success: false,
                 message: 'Error: username cannot be blank'
             });
         }
         if(!email){
-            return res.send({
+            return res.status(400).send({
                 success: false,
                 message: 'Error: email cannot be blank'
             });
         }
         if(!password){
-            return res.send({
+            return res.status(400).send({
                 success: false,
                 message: 'Error: password cannot be blank'
+            });
+        }
+
+        if(username.length < 3){
+            return res.status(400).send({
+                success: false,
+                message: 'Error: username must be atleast 3 characters'
             });
         }
 
@@ -53,7 +60,7 @@ router.route('/account/signup').post((req, res ) => {
             if(err) {
                 return res.status(409).send({
                     success: false,
-                    message: 'Error: Server error'
+                    message: 'Error: Server error 1'
                 
                 });
             }
@@ -70,7 +77,7 @@ router.route('/account/signup').post((req, res ) => {
             if(err) {
                 return res.status(409).send({
                     success: false,
-                    message: 'Error: Server error'
+                    message: 'Error: Server error 2'
                 });
                 
             }
@@ -98,7 +105,7 @@ router.route('/account/signup').post((req, res ) => {
                 if(err) {
                     return res.status(409).json({
                         success: false,
-                        message: 'Error: Server error'
+                        message: 'Not able to create user error'
                     });
                 }
                 return res.status(200).send({

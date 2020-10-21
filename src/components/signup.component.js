@@ -149,9 +149,10 @@ export default class SignUp extends Component{ ////need to always call super whe
             <div className="form-group">
               <label>Password: </label>
               <input 
-                  type="text" 
+                  type="password" 
                   required
                   className="form-control"
+                  placeholder="Password"
                   value={this.state.signUpPassword}
                   onChange={this.onTextboxChangeSignUpPassword}
                   />
