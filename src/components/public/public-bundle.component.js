@@ -5,6 +5,9 @@ import axios from 'axios';
 //import styled from 'styled-components';
 import { VerticalTimeline, VerticalTimelineElement }  from 'react-vertical-timeline-component';
 import 'react-vertical-timeline-component/style.min.css';
+import IconButton from '@material-ui/core/IconButton';
+import ThumbUpIcon from '@material-ui/icons/ThumbUp';
+import ThumbUpOutlinedIcon from '@material-ui/icons/ThumbUpOutlined';
 
 
 
@@ -135,6 +138,11 @@ export default class Games extends Component { //class component
         return d.toString();
     }
 
+    likeBundle(bundleID){
+        console.log("You have liked " + bundleID);
+
+    }
+
 
 
 
@@ -142,7 +150,15 @@ export default class Games extends Component { //class component
         return(
             <div>
                 {this.PrivateWarning(this.state.private)}
-                <h3 style={{color:"White"}}>{this.state.data.name}</h3>
+                <div>
+                    <h3 style={{color:"White", textAlign:"center", width: "100%"}}>{this.state.data.name}</h3>
+                    <div style={{display: "flex", justifyContent: "center", verticalAlign: "middle", alignItems:"center"}}>
+                        <h3 style={{border: "solid", marginBottom: "0px"}}>Follow</h3>
+                        <IconButton onClick={() => this.likeBundle(this.state.bundle)}>
+                        <ThumbUpOutlinedIcon className="textColor" style={{fontSize: "2.5rem", marginLeft: "20px" }}/>
+                        </IconButton>
+                    </div>
+                </div>
                 <br></br>
                 <div>{this.state.games.map(i => (<p key={i.appid} style={{fontWeight: "bold"}}>{i.name}</p>))} </div>
 
