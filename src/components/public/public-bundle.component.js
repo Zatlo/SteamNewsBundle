@@ -9,7 +9,9 @@ import IconButton from '@material-ui/core/IconButton';
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import ThumbUpOutlinedIcon from '@material-ui/icons/ThumbUpOutlined';
 
-
+import {
+    getFromStorage
+} from '../../utils/storage';
 
 export default class Games extends Component { //class component
     constructor(props){
@@ -21,29 +23,43 @@ export default class Games extends Component { //class component
             data: [],
             games: [],
             steamJSON: [],
-            private: false
+            private: false,
+            following: false,
+            followColor: 'rgb(209, 109, 201)'
         }
     }
 
     componentDidMount(){
+        const obj = getFromStorage('steam-news-bundles');
+        var token = '';
+        if (obj && obj.token) {
+            token = obj.token;
+        }
         axios.get('/public/populatePublicBundle', {
             params: {
-                bundleObjID: this.state.bundle
+                bundleObjID: this.state.bundle,
+                token: token
             }
         })
         .then(response=> {
-            console.log(response);
-            if(response.data.message === 'private'){
+            if(response.data.private){
                 this.setState({private: true})
             }
             else{
-                this.setState({data: response.data}) //gets all data of ob ject
+                this.setState({data: response.data.data, following: response.data.following}) //gets all data of ob ject
+                this.isFollowing();
                 this.fetchBundleGamesData();
             }
         })
         .catch((error)=>{
             console.log(error);
         })
+    }
+
+    isFollowing=()=>{
+        if(this.state.following){
+            this.setState({followColor: 'Green'});
+        }
     }
 
     fetchBundleGamesData = () => {
@@ -143,6 +159,63 @@ export default class Games extends Component { //class component
 
     }
 
+    unFollowBundle(){
+        console.log("unfollowing");
+    }
+
+    followBundle=(bundleID)=>{
+        if(this.state.following){
+            this.unFollowBundle();
+            return;
+        }
+
+        const obj = getFromStorage('steam-news-bundles');
+        if (obj && obj.token) {
+            const { token } = obj;
+
+            const data = {
+                token: token,
+                bundleID: bundleID,
+            }
+
+            axios.post('/public/likePublicBundle', data)//sends data to backend
+            .then(res => {
+                console.log(res);
+                if(res.data.success){
+                    console.log("inside");
+                    this.setState({followColor: 'Green'})
+                }
+            })
+            console.log("h");
+
+        }
+        else{
+            console.log("not signed in");
+            return;
+        }
+
+
+    }
+
+    likeButtonAndFollowButton(privacy){
+        if(privacy){
+            return;
+        }
+        else{
+            return(
+                <div>
+                    <h3 style={{color:"White", textAlign:"center", width: "100%"}}>{this.state.data.name}</h3>
+                    <div style={{display: "flex", justifyContent: "center", verticalAlign: "middle", alignItems:"center"}}>
+                        <h3 onClick={() => this.followBundle(this.state.bundle)} style={{border: "solid", marginBottom: "0px", color: this.state.followColor, cursor: 'pointer'}}>Follow</h3>
+                        <IconButton onClick={() => this.likeBundle(this.state.bundle)}>
+                        <ThumbUpOutlinedIcon className="textColor" style={{fontSize: "2.5rem", marginLeft: "20px" }}/>
+                        </IconButton>
+                    </div>
+                </div>
+            );
+        }
+    }
+
 
 
 
@@ -150,15 +223,7 @@ export default class Games extends Component { //class component
         return(
             <div>
                 {this.PrivateWarning(this.state.private)}
-                <div>
-                    <h3 style={{color:"White", textAlign:"center", width: "100%"}}>{this.state.data.name}</h3>
-                    <div style={{display: "flex", justifyContent: "center", verticalAlign: "middle", alignItems:"center"}}>
-                        <h3 style={{border: "solid", marginBottom: "0px"}}>Follow</h3>
-                        <IconButton onClick={() => this.likeBundle(this.state.bundle)}>
-                        <ThumbUpOutlinedIcon className="textColor" style={{fontSize: "2.5rem", marginLeft: "20px" }}/>
-                        </IconButton>
-                    </div>
-                </div>
+                {this.likeButtonAndFollowButton(this.state.private)}
                 <br></br>
                 <div>{this.state.games.map(i => (<p key={i.appid} style={{fontWeight: "bold"}}>{i.name}</p>))} </div>
 
